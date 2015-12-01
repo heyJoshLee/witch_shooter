@@ -19,6 +19,6 @@ public class BackgroundObjectMover : MonoBehaviour {
 	
 	void OnTriggerEnter2D (Collider2D col) {
 		// Destroy object when it's off the screen
-		Destroy(gameObject);
+		if (col.tag == "Shredder") { Destroy(gameObject); }
 	}
 }

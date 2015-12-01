@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour {
 	public float hPadding = 0.5f;
 	public float leftPadding = 0.5f;
 	public float rightPadding = 0.5f;
+	public GameObject attack;
+	public float firingRate = 0.2f;
+	bool canFire = true;
 
 	void Start () {
 
@@ -37,7 +40,26 @@ public class PlayerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Move();
+		
+		if (Input.GetKeyDown(KeyCode.Space)) {
+			InvokeRepeating("Shoot", 0.000001f, firingRate);
+		}
+		if (Input.GetKeyUp(KeyCode.Space)) {
+			CancelInvoke("Shoot");
+		}
 	}
+	
+	
+	void Shoot() {
+		if (Input.GetKey(KeyCode.Space)) {
+			if(canFire) {
+				GameObject fire = Instantiate(attack, new Vector3(transform.position.x + 13f, transform.position.y, transform.position.z), Quaternion.Euler(0, 0, 90f)) as GameObject;
+				fire.GetComponent<Rigidbody2D>().velocity = new Vector3(50f, 0f, 0f); 
+			}
+		}
+	}
+	// TODO: limit fire rate
+
 	
 	void Move () {
 		if (Input.GetKey(KeyCode.DownArrow)) {
@@ -56,6 +78,7 @@ public class PlayerController : MonoBehaviour {
 		
 		transform.position = new Vector2(newx, newy);
 	}
+	
 	
 }
 

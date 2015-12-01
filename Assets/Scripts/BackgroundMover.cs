@@ -9,7 +9,6 @@ public class BackgroundMover : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		SpawnBgObject();
 	}
 	
 	// Update is called once per frame
@@ -20,7 +19,7 @@ public class BackgroundMover : MonoBehaviour {
 	}
 	
 	void SpawnBgObject () {
-			GameObject tree = Instantiate(tree_1, new Vector3(200f, 1f, 0f), Quaternion.identity) as GameObject;
+			GameObject tree = Instantiate(tree_1, new Vector3(100f, 1f, 0f), Quaternion.identity) as GameObject;
 			tree.transform.parent = gameObject.transform;		
 	}
 }
