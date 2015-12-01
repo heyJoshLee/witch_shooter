@@ -7,17 +7,15 @@ public class BackgroundMover : MonoBehaviour {
 	public GameObject tree_1;
 	private bool spawned = false;
 
-	// Use this for initialization
-	void Start () {
-	}
 	
-	// Update is called once per frame
+	// Will an object be spawned?
 	void Update () {
 		if (Random.value > 0.99f) {
 			SpawnBgObject();
 		}
 	}
 	
+	// Spawns tree
 	void SpawnBgObject () {
 			GameObject tree = Instantiate(tree_1, new Vector3(100f, 1f, 0f), Quaternion.identity) as GameObject;
 			tree.transform.parent = gameObject.transform;		
