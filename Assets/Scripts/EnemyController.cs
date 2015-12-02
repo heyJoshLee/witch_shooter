@@ -3,10 +3,12 @@ using System.Collections;
 
 public class EnemyController : MonoBehaviour {
 	
-	public float health = 150f;
-	public float fireRate = 0.001f;
+	public static float health;
+	public static float fireRate = 0.001f;
 	public GameObject enemyAttack;
-	public float speed = 1.0f;
+	public static float speed = 1.0f;
+	
+	public static int enemyCount = 0;
 	
 	// Check to see if the Enemy gets hit by a PlayerAttack
 	void OnTriggerEnter2D(Collider2D col) {
@@ -19,6 +21,7 @@ public class EnemyController : MonoBehaviour {
 			// if this.health is lower than 0 then destroy this object
 			if (health <= 0f) {
 				Destroy(gameObject);
+				enemyCount -= 1;
 			}
 		}
 	}
